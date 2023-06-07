@@ -1,0 +1,63 @@
+planner:  
+    n_threads: 2                                                                # Number of threads for ROS spinner.
+    unknown_space_untraversable: false                                          # If set true, unknown space is assumed to be untraversable.
+    longest_valid_segment_length: 0.5                                           # [m] The resolution of edge checking 
+    max_stall: 3                                                                # Maximum stall number of single path planning, increasing this makes the path finer but is slower
+    # for small_crater --- 0.3 --- 0.3 --- or --- 0.3 --- 0.8 ---
+    traversability_threshold_high : 0.3 #0.9
+    traversability_threshold_low : 0.3 #0.6
+    traversability_offset: 0.05                                                 # Get traversability at height + 0.05m for a valid traversaboility voxel
+    tsdf_map_topic: "/voxblox_tsdf_node/tsdf_map_out"                           # Topic name of the tsdf map
+    traversability_map_topic: "/voxblox_tsdf_node/traversability_layer"         # Topic name of the traversability map
+    height_map_topic : "/voxblox_height_node/height_layer"                      # Topic name of the height map
+    # crater [-16, 14] * [-17, 12]
+    state_space:                                                                # [m] Size of the state space
+        x_lim:
+            low : -16
+            high : 14
+        y_lim:
+            low : -17
+            high : 12
+        z_lim:
+            low : -5
+            high : 5
+
+motion_validator:
+    max_inclination : 0.58                                                      # Maximum allowed slope in edge checking
+    
+robot:      
+    base_frame: "base"                                                          # Frame ID which is used to get robot pose.
+    torso:
+        length: 1.07                                                            # [m] Length.
+        width: 0.55                                                             # [m] Width.
+        height: 0.3                                                             # [m] Height.
+        offset:                                                                 # [m] Torso center offset relative to base_frame.
+            x: 0.0
+            y: 0.0
+            z: 0.04
+        collision_checking_tolerance: 0.6 #0.01
+    feet:
+        offset:                                                                 # [m] Reachability box offset relative to base_frame.
+            z: -0.525
+
+inspection:
+    distance: 0.3                                                               # [m] From how far away the robot should inspect the target
+
+
+debug:
+    use_traversability: true                                                    # Whether use traversability map
+    visualize_vertex_validity_type: false                                                                      
+    visualize_edge_validity_type: false
+
+# To publish customized mission, format the ToIs and PoIs as smug_planner_msgs/TargetOfInterest and publish on the following topic
+mission:
+    plan_with_valid: true                                                       # Set to true will discard the invalid PoIs and planning with the rest, otherwise abort the mission
+
+benchmark:                                                          
+    dynamic_programming: false                                                  # Use DP to solve the second stage            
+    iterativeDP: true                                                           # Use IDP to solve the second stage                   
+    rubber_band_algorithm: false                                                # Use RBA to solve the second stage 
+    compare: false                                                              # Compare the three methods over the same graph (first use DP to build the graph)
+
+environment:
+    name:  "crater"

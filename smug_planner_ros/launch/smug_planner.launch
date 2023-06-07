@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+    <node name="smug_planner" pkg="smug_planner_ros" type="smug_planner_ros_node" output="screen">
+        <rosparam command="load" file="$(find smug_planner_ros)/config/params.yaml"/>
+    </node>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find smug_planner_ros)/rviz/smug_planner.rviz"/>
+</launch>

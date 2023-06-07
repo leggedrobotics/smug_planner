@@ -1,0 +1,4 @@
+geometry_msgs/PoseStamped start # robot start pose
+smug_planner_msgs/GoalSet[] goal_sets # list ToI and PoI, see definition smug_planner_msgs/GoalSet
+---
+nav_msgs/Path path
