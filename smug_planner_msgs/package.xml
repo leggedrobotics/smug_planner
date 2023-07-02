@@ -60,7 +60,6 @@
   <exec_depend>nav_msgs</exec_depend>
 
   <depend>actionlib_msgs</depend>
-  <depend>navigation_msgs</depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

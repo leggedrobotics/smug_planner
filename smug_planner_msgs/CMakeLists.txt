@@ -12,7 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   nav_msgs
   message_generation
-  navigation_msgs
   actionlib_msgs 
 )
 
@@ -75,7 +74,6 @@ generate_messages(
   std_msgs
   geometry_msgs
   nav_msgs
-  navigation_msgs
   actionlib_msgs
 )
 
@@ -111,7 +109,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES smug_planner_msgs
- CATKIN_DEPENDS geometry_msgs nav_msgs message_runtime actionlib_msgs navigation_msgs
+ CATKIN_DEPENDS geometry_msgs nav_msgs message_runtime actionlib_msgs
 #  DEPENDS system_lib
 )
 
